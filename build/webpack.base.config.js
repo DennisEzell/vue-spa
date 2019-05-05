@@ -8,8 +8,8 @@ const config = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /(\.js$)|(\.vue$)/,
+        enforce: 'pre', //subjects specified files to lint rules BEFORE they are handled by other loaders
+        test: /(\.js$)|(\.vue$)/, //What we want to test
         loader: 'eslint-loader',
         exclude: /node_modules/
       },
@@ -29,9 +29,9 @@ const config = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist'), //Put our webpack build result in the /dist folder
     publicPath: '/',
-    filename: 'assets/js/[name].js'
+    filename: 'assets/js/[name].js' //This means our client-entry.js file will be called /assests/js/app.js post build (app because of the entry property above)
   }
 }
 

@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const fs = require("fs");
+const fs = require("fs"); //Filesystem node module
 const path = require("path");
 const serialize = require('serialize-javascript');
 const { createBundleRenderer } = require('vue-server-renderer');
@@ -8,24 +8,25 @@ const isProd = typeof process.env.NODE_ENV !== 'undefined' && (process.env.NODE_
 let renderer;
 
 const indexHTML = (() => {
-  return fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf-8");
+  return fs.readFileSync(path.resolve(__dirname, "./index.html"), "utf-8");  //path.resolve(__dirname, ...) Makes the path always relative to the server.js file
 })();
 
 if (isProd) {
   app.use("/", express.static(path.resolve(__dirname, "./dist")));
 } else {
-  app.use("/dist", express.static(path.resolve(__dirname, "./dist")));
+  app.use("/dist", express.static(path.resolve(__dirname, "./dist"))); //Express will use static modules from /dist
 }
 
 if (isProd) {
   const bundlePath = path.resolve(__dirname, './dist/server/main.js')
   renderer = createBundleRenderer(fs.readFileSync(bundlePath, 'utf-8'))
 } else {
-  require("./build/dev-server")(app, bundle => {
+  require("./build/dev-server")(app, bundle => { // Dev env. settings for hot reloading
     renderer = createBundleRenderer(bundle)
   });
 }
 
+//Every request hits this function 
 app.get("*", (req, res) => {
   const context = { url: req.url };
   renderer.renderToString(context, (err, html) => {

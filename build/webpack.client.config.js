@@ -2,6 +2,8 @@ const base = require('./webpack.base.config')
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+
+//Extends the webpack.base.config file and assigns a new property, "plugins"
 const config = Object.assign({}, base, {
   plugins: (base.plugins || []).concat([
     new webpack.optimize.CommonsChunkPlugin({

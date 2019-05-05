@@ -9,4 +9,5 @@ const app = new Vue({
   store
 })
 
+//app.js is feeding data (via its export) into client-entry.js
 export { app, router, store }

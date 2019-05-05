@@ -1,0 +1,3 @@
+(2) Using Webpack
+    --Create the base cofiguration file for webpack (webpack.base.config.js)
+    

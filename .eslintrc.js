@@ -1,5 +1,5 @@
 module.exports = {
-  root: true,
+  root: true, //applies to all files (scope of the linting)
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module'
@@ -11,3 +11,5 @@ module.exports = {
     'html'
   ]
 }
+
+// http://bit.ly/vuelint-rules
